@@ -1,7 +1,22 @@
 ﻿@page "/"
+@using SmartMirror.Blazor.Client.ViewModels
+@using SmartMirror.Blazor.Client.Models
+@inject ClockViewModel ClockViewModel
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+@ClockViewModel.CurrentTime
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+@code {
+    private ClockViewModel model;
+
+    //public async void OnLaunched()
+    //{
+    //    var clockModel = new ClockModel();
+    //    await clockModel.Update();
+    //}
+
+}

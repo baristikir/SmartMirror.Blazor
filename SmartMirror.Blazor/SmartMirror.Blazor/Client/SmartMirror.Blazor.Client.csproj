@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Shared\SmartMirror.Blazor.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\" />
+  </ItemGroup>
+
 </Project>
