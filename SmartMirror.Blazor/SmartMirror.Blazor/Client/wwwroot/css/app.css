@@ -181,3 +181,28 @@ app {
         display: block;
     }
 }
+
+/** Availability Data Entry*/
+#availabilityDataEntry {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+#clock {
+    grid-area: 1 / 1 / 3 / 2;
+}
+
+.div2 {
+    grid-area: 1 / 5 / 3 / 6;
+}
+
+.div3 {
+    grid-area: 1 / 3 / 2 / 4;
+}
+
+.div4 {
+    grid-area: 4 / 3 / 5 / 4;
+} 
