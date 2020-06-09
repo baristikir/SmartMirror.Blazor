@@ -6,18 +6,23 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using SmartMirror.Blazor.Client.ViewModels;
+using SmartMirror.Blazor.Server.data;
 
 namespace SmartMirror.Blazor.Server
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private IConfiguration _configuration { get; }
+
+        public Startup()
         {
-            Configuration = configuration;
+            var configurationBuilder = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", true, true);
+            _configuration = configurationBuilder.Build();
         }
 
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -26,6 +31,11 @@ namespace SmartMirror.Blazor.Server
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            // Adding the DbContext references
+            services.AddDbContext<SQLiteDbContext>(options =>
+                options.UseSqlite(_configuration["ConnectionStrings:SQLiteConnection"]));
+
             services.AddSingleton<ClockViewModel>();
         }
 
