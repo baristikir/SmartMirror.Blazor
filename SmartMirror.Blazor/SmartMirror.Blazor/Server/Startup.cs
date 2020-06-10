@@ -36,7 +36,7 @@ namespace SmartMirror.Blazor.Server
             services.AddDbContext<SQLiteDbContext>(options =>
                 options.UseSqlite(_configuration["ConnectionStrings:SQLiteConnection"]));
 
-            services.AddSingleton<ClockViewModel>();
+            services.AddScoped<ClockViewModel>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,7 +1,8 @@
 ﻿@page "/"
 @using SmartMirror.Blazor.Client.ViewModels
 @using SmartMirror.Blazor.Client.Models
-@*@inject ClockViewModel ClockViewModel*@
+@using SmartMirror.Blazor.Client.Controllers
+@inject ClockViewModel ClockViewModel
 
 @*<div id="availabilityDataEntry">
     <div id="clock">
@@ -9,19 +10,40 @@
     </div>
 </div>*@
 
-<div class="region top right">
-    <p>@DateTime.Now</p>
+<div class="region">
+    <div class="top">
+        <div class="left">
+            <p>@ClockViewModel.CurrentTime</p>
+        </div>
+        <div class ="region-top-center">
+            <p>Online</p>
+        </div>
+    </div>
 </div>
 
 @code {
 
-
-    //private ClockViewModel model;
-
-    //public async void OnLaunched()
+    //protected override Task OnInitAsync()
     //{
     //    var clockModel = new ClockModel();
-    //    await clockModel.Update();
+    //    await ClockViewModel.Initialize(clockModel);
     //}
+
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    var clockModel = new ClockModel();
+    //    await ClockViewModel.Initialize(clockModel);
+    //}
+
+    protected override void OnInitialized()
+    {
+        System.Console.WriteLine("_*   ");
+        System.Console.WriteLine("_**************************");
+        System.Console.WriteLine("_***** Clock rendered ******");
+        System.Console.WriteLine("_**************************");
+        System.Console.WriteLine("_   ");
+        var clockModel = new ClockModel();
+        ClockViewModel.Initialize(clockModel);
+    }
 
 }

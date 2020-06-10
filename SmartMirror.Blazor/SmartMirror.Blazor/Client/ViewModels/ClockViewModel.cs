@@ -8,7 +8,7 @@ namespace SmartMirror.Blazor.Client.ViewModels
 {
     public class ClockViewModel : PropertyChangedBase
     {
-        private ClockViewModel model;
+        private ClockModel model;
 
         private string currentTime { get; set; }
 
@@ -47,9 +47,11 @@ namespace SmartMirror.Blazor.Client.ViewModels
             }
         }
 
-        internal void Initialize(ClockModel model)
+        internal void  Initialize(ClockModel model)
         {
-            this.model = this.model;
+            this.model = model;
+            updateTime();
+            model.PropertyChanged += ModelPropertyChange;
         }
 
         private void ModelPropertyChange(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -62,8 +64,8 @@ namespace SmartMirror.Blazor.Client.ViewModels
 
         private void updateTime()
         {
-           // CurrentTime = model.CurrentTime.ToString("h:mm");
-           // CurrentDate = model.CurrentDate.ToString("MMMM d");
+            CurrentTime = model.CurrentTime.ToString("h:mm");
+            // CurrentDate = model.CurrentDate.ToString("MMMM d");
         }
 
     }
